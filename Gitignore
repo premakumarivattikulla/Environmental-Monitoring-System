@@ -1,0 +1,22 @@
+# Arduino compiled files
+*.hex
+*.elf
+*.bin
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# IDE files
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backup files
+*.old
+*~
