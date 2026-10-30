@@ -1,0 +1,43 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(8, 9, 10, 11, 12, 13);
+
+const int tempPin = A1;
+const int lightPin = A0;
+
+void setup() {
+  lcd.begin(16, 2);
+  lcd.clear();
+  Serial.begin(9600);
+}
+
+void loop() {
+
+  // Temperature Logic
+  int tempReading = analogRead(tempPin);
+
+  float voltage = tempReading * (5.0 / 1024.0);
+
+  float tempC = (voltage - 0.5) * 100;
+
+  // Light Logic
+  int lightReading = analogRead(lightPin);
+
+  String lightStatus = (lightReading > 900) ? "Bright" : "Dark ";
+
+  // Display Results
+  lcd.setCursor(0, 0);
+  lcd.print("Temp: ");
+  lcd.print(tempC, 1);
+  lcd.print(" C  ");
+
+  lcd.setCursor(0, 1);
+  lcd.print("Light: ");
+  lcd.print(lightStatus);
+
+  // Serial Monitor
+  Serial.print("Light Status: ");
+  Serial.println(lightReading);
+
+  delay(500);
+}
